@@ -12,8 +12,9 @@
 #include "Platform.h"
 #include <Library/DebugLib.h>
 #include <Library/HobLib.h>
-#include <Library/PeiServicesLib.h>
 #include <Library/PcdLib.h>
+#include <Library/PeiServicesLib.h>
+
 
 /**
   Publish PEI & DXE (Decompressed) Memory based FVs to let PEI
@@ -32,7 +33,9 @@ PeiFvInitialization (
   // Let DXE know about the DXE FV
   //
   BuildFvHob (PcdGet32 (PcdRiscVDxeFvBase), PcdGet32 (PcdRiscVDxeFvSize));
-  DEBUG ((DEBUG_INFO, "Platform builds DXE FV at %x, size %x.\n", PcdGet32 (PcdRiscVDxeFvBase), PcdGet32 (PcdRiscVDxeFvSize)));
+  DEBUG ((DEBUG_INFO, "Platform builds DXE FV at %x, size %x.\n",
+    PcdGet32 (PcdRiscVDxeFvBase),
+    PcdGet32 (PcdRiscVDxeFvSize)));
 
   //
   // Let PEI know about the DXE FV so it can find the DXE Core

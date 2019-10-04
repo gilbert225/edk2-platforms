@@ -30,13 +30,13 @@
   Platform.c
 
 [Packages]
-  MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
-  UefiCpuPkg/UefiCpuPkg.dec
-  RiscVPkg/RiscVPkg.dec
+  MdePkg/MdePkg.dec
   Platform/RiscV/RiscVPlatformPkg.dec
-  Silicon/SiFive/SiFive.dec
   Platform/RiscV/SiFive/U500Pkg/U500.dec
+  RiscVPkg/RiscVPkg.dec
+  Silicon/SiFive/SiFive.dec
+  UefiCpuPkg/UefiCpuPkg.dec
 
 [Guids]
   gEfiMemoryTypeInformationGuid
@@ -55,15 +55,14 @@
   SiliconSiFiveU5MCCoreplexInfoLib
 
 [Pcd]
-  gEfiMdePkgTokenSpaceGuid.PcdGuidedExtractHandlerTableAddress
-  gEfiMdeModulePkgTokenSpaceGuid.PcdVariableStoreSize
+  gEfiMdeModulePkgTokenSpaceGuid.PcdEmuVariableNvStoreReserved
   gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareSize
   gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableSize
-  gEfiMdeModulePkgTokenSpaceGuid.PcdEmuVariableNvStoreReserved
   gEfiMdeModulePkgTokenSpaceGuid.PcdPciDisableBusEnumeration
+  gEfiMdeModulePkgTokenSpaceGuid.PcdVariableStoreSize
+  gEfiMdePkgTokenSpaceGuid.PcdGuidedExtractHandlerTableAddress
   gUefiRiscVPlatformPkgTokenSpaceGuid.PcdRiscVDxeFvBase
   gUefiRiscVPlatformPkgTokenSpaceGuid.PcdRiscVDxeFvSize
-
   gUefiRiscVPlatformU500PkgTokenSpaceGuid.PcdNumberofU5Cores
   gUefiRiscVPlatformU500PkgTokenSpaceGuid.PcdE5MCSupported
 
