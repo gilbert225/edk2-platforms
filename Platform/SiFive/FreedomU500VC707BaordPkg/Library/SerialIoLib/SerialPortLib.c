@@ -21,7 +21,7 @@
 //---------------------------------------------
 
 #define UART_REG_IP     0x14
-  #define UART_IP_RXWM 0x02
+#define UART_IP_RXWM    0x02
 
 //---------------------------------------------
 // UART Settings
@@ -80,17 +80,17 @@ SerialPortWrite (
   IN UINTN     NumberOfBytes
   )
 {
-  UINTN i;
+    UINTN i;
 
-  if (Buffer == NULL) {
-    return 0;
-  }
+    if (Buffer == NULL) {
+        return 0;
+    }
 
-  for(i=0; i < NumberOfBytes; i++) {
-    sifive_uart_putc (Buffer[i]);
-  }
+    for(i=0; i < NumberOfBytes; i++) {
+        sifive_uart_putc (Buffer[i]);
+    }
 
-  return i;
+    return i;
 }
 
 
@@ -112,17 +112,17 @@ SerialPortRead (
   IN  UINTN     NumberOfBytes
   )
 {
-  UINTN i;
+    UINTN i;
 
-  if (NULL == Buffer) {
-    return 0;
-  }
+    if (NULL == Buffer) {
+        return 0;
+    }
 
-  for(i=0; i < NumberOfBytes; i++) {
-    Buffer[i] = (UINT8)sifive_uart_getc ();
-  }
+    for(i=0; i < NumberOfBytes; i++) {
+        Buffer[i] = (UINT8)sifive_uart_getc ();
+    }
 
-  return i;
+    return i;
 }
 
 /**
@@ -142,16 +142,16 @@ SerialPortPoll (
   VOID
   )
 {
-  static volatile UINT32 * const uart = (void *)(U500_UART_ADDR);
-  UINT32 ip;
+    static volatile UINT32 * const uart = (void *)(U500_UART_ADDR);
+    UINT32 ip;
 
-  ip = REG32(uart, UART_REG_IP);
-  if(ip & UART_IP_RXWM) {
-    return TRUE;
-  }
-  else {
-    return FALSE;
-  }
+    ip = REG32(uart, UART_REG_IP);
+    if(ip & UART_IP_RXWM) {
+        return TRUE;
+    }
+    else {
+        return FALSE;
+    }
 }
 
 /**
@@ -171,7 +171,7 @@ SerialPortSetControl (
   )
 {
 
-  return RETURN_SUCCESS;
+    return RETURN_SUCCESS;
 }
 
 /**
@@ -190,8 +190,8 @@ SerialPortGetControl (
   OUT UINT32 *Control
   )
 {
-  *Control = 0;
-  return RETURN_SUCCESS;
+    *Control = 0;
+    return RETURN_SUCCESS;
 }
 
 /**
@@ -238,5 +238,5 @@ SerialPortSetAttributes (
   IN OUT EFI_STOP_BITS_TYPE *StopBits
   )
 {
-  return RETURN_SUCCESS;
+    return RETURN_SUCCESS;
 }

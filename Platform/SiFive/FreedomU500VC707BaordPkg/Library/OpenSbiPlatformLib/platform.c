@@ -51,8 +51,8 @@
 
 /* PRCI clock related macros */
 //TODO: Do we need a separate driver for this ?
-#define U500_PRCI_BASE_ADDR         0x10000000
-#define U500_PRCI_CLKMUXSTATUSREG   0x002C
+#define U500_PRCI_BASE_ADDR                 0x10000000
+#define U500_PRCI_CLKMUXSTATUSREG           0x002C
 #define U500_PRCI_CLKMUX_STATUS_TLCLKSEL    (0x1 << 1)
 
 static void U500_modify_dt(void *fdt)
