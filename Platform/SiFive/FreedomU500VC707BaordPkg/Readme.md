@@ -4,10 +4,10 @@
 This is a sample RISC-V EDK2 platform package used agaist SiFive Freedom U500
 VC707 FPGA Dev Kit, please refer to "SiFive Freedom U500 VC707 FPGA Getting
 Started Guide" on https://www.sifive.com/documentation. This package is built
-with below common packages, <br>
+with below common packages, 
 - **RiscVPlatformPkg**, edk2-platform/Platform/RiscV
 - **RiscVPkg**, edk2 master branch (Currently is in edk2-staging/RISC-V branch)
-<br>
+
 This package provides librareis and modules which are SiFive U500 platform
 implementation-specific and incorporate with common RISC-V packages mentioned
 above.
@@ -22,7 +22,7 @@ git clone https://github.com/tianocore/edk2-non-osi.git
 ```
 
 ## Platform Owners
-Chang, Abner <abner.chang@hpe.com><br>
+Chang, Abner <abner.chang@hpe.com>
 Chen, Gilbert <gilbert.chen@hpe.com>
 
 ## Platform Status
@@ -30,7 +30,7 @@ Currently the binary built from U500Pkg can boot SiFive Freedom U500 VC707 FPGA
 to EFI shell with console in/out enabled.
 
 ## Linux Build Instructions
-You can build the RISC-V platform using below script, <br>
+You can build the RISC-V platform using below script, 
 `build -a RISCV64 -p Platform/RiscV/SiFive/U500Pkg/U500.dsc -t GCCRISCV`
 
 ## Supported Operating Systems
@@ -40,8 +40,8 @@ Only support to boot to EFI Shell so far
 Only RISC-V RV64 is verified on this platform.
 
 ## Related Materials
-- [RISC-V OpenSbi](https://github.com/riscv/opensbi)<br>
-- [SiFive U500 VC707 FPGA Getting Started Guide](https://sifive.cdn.prismic.io/sifive%2Fc248fabc-5e44-4412-b1c3-6bb6aac73a2c_sifive-u500-vc707-gettingstarted-v0.2.pdf)<br>
+- [RISC-V OpenSbi](https://github.com/riscv/opensbi)
+- [SiFive U500 VC707 FPGA Getting Started Guide](https://sifive.cdn.prismic.io/sifive%2Fc248fabc-5e44-4412-b1c3-6bb6aac73a2c_sifive-u500-vc707-gettingstarted-v0.2.pdf)
 - [SiFive RISC-V Core Document](https://www.sifive.com/documentation)
 
 ## U500 Platform Libraries and Drivers

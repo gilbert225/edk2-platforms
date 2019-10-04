@@ -17,8 +17,8 @@ code name or etc. (e.g. Platform/RiscV/SiFive/U500Pkg)
 RISC-V platform package should provide EDK2 metafiles under RISC-V platform
 package folder (Platform/RiscV/{Vendor}/{Platform}). Build RISC-V platform
 package against edk2 and follow the build guidence mentioned in Readme.md under
-below link.<br>
-https://github.com/tianocore/edk2-platforms<br>
+below link.
+https://github.com/tianocore/edk2-platforms
 
 ### Download the sources ###
 ```
@@ -38,10 +38,10 @@ platform and boot to EFI SHELL successfully.
 Currently, the EDK2 RISC-V platform can only build with edk2 project in
 **edk2-staging/RISC-V-V2** branch. The build architecture whcih is supported
 and verified so far is "RISCV64". The verified RISC-V toolchain is https://github.com/riscv/riscv-gnu-toolchain @64879b24
-, toolchain tag is "GCC5" declared in tools_def.txt<br>
+, toolchain tag is "GCC5" declared in tools_def.txt
 
 ### Linux Build Instructions
-You can build the RISC-V platform using below script, <br>
+You can build the RISC-V platform using below script, 
 `build -a RISCV64 -p Platform/{Vendor}/{Platform}/{Platform}.dsc -t GCCRISCV`
 
 Or modify target.txt to set up your build parameters.
