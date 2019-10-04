@@ -15,16 +15,16 @@
 //
 // The Library classes this module consumes
 //
+#include <Library/BaseMemoryLib.h>
 #include <Library/DebugLib.h>
 #include <Library/PeiServicesLib.h>
-#include <Library/BaseMemoryLib.h>
-
+#include <ProcessorSpecificDataHob.h>
 #include <RiscV.h>
 #include <SmbiosProcessorSpecificData.h>
-#include <ProcessorSpecificDataHob.h>
-#include <sbi/sbi_hart.h>
 #include <sbi/sbi.h>
+#include <sbi/sbi_hart.h>
 #include <sbi/SbiFirmwareContext.h>
+
 
 /**
   Build up common firmware context processor-specific information
@@ -59,24 +59,38 @@ CommonFirmwareContextHartSpecificInfo (
   ProcessorSpecDataHob->ParentProcessorUid = ParentProcessorUid;
   CopyGuid (&ProcessorSpecDataHob->CoreGuid, CoreGuid);
   ProcessorSpecDataHob->Context = NULL;
-  ProcessorSpecDataHob->ProcessorSpecificData.Revision         = SMBIOS_RISC_V_PROCESSOR_SPECIFIC_DATA_REVISION;
-  ProcessorSpecDataHob->ProcessorSpecificData.Length           = sizeof (SMBIOS_RISC_V_PROCESSOR_SPECIFIC_DATA);
+  ProcessorSpecDataHob->ProcessorSpecificData.Revision =
+    SMBIOS_RISC_V_PROCESSOR_SPECIFIC_DATA_REVISION;
+  ProcessorSpecDataHob->ProcessorSpecificData.Length = 
+    sizeof (SMBIOS_RISC_V_PROCESSOR_SPECIFIC_DATA);
   ProcessorSpecDataHob->ProcessorSpecificData.HartId.Value64_L = (UINT64)HartId;
   ProcessorSpecDataHob->ProcessorSpecificData.HartId.Value64_H = 0;
-  ProcessorSpecDataHob->ProcessorSpecificData.BootHartId       = (UINT8)IsBootHart;
-  ProcessorSpecDataHob->ProcessorSpecificData.InstSetSupported = FirmwareContextHartSpecific->IsaExtensionSupported;
-  ProcessorSpecDataHob->ProcessorSpecificData.PrivilegeModeSupported   = SMBIOS_RISC_V_PSD_MACHINE_MODE_SUPPORTED;
-  if ((ProcessorSpecDataHob->ProcessorSpecificData.InstSetSupported & RISC_V_ISA_SUPERVISOR_MODE_IMPLEMENTED) != 0) {
-    ProcessorSpecDataHob->ProcessorSpecificData.PrivilegeModeSupported |= SMBIOS_RISC_V_PSD_SUPERVISOR_MODE_SUPPORTED;
+  ProcessorSpecDataHob->ProcessorSpecificData.BootHartId = (UINT8)IsBootHart;
+  ProcessorSpecDataHob->ProcessorSpecificData.InstSetSupported =
+    FirmwareContextHartSpecific->IsaExtensionSupported;
+  ProcessorSpecDataHob->ProcessorSpecificData.PrivilegeModeSupported =
+    SMBIOS_RISC_V_PSD_MACHINE_MODE_SUPPORTED;
+  if ((ProcessorSpecDataHob->ProcessorSpecificData.InstSetSupported &
+    RISC_V_ISA_SUPERVISOR_MODE_IMPLEMENTED) != 0) {
+    ProcessorSpecDataHob->ProcessorSpecificData.PrivilegeModeSupported |=
+      SMBIOS_RISC_V_PSD_SUPERVISOR_MODE_SUPPORTED;
   }
-  if ((ProcessorSpecDataHob->ProcessorSpecificData.InstSetSupported & RISC_V_ISA_USER_MODE_IMPLEMENTED) != 0) {
-    ProcessorSpecDataHob->ProcessorSpecificData.PrivilegeModeSupported |= SMBIOS_RISC_V_PSD_USER_MODE_SUPPORTED;
+  if ((ProcessorSpecDataHob->ProcessorSpecificData.InstSetSupported &
+    RISC_V_ISA_USER_MODE_IMPLEMENTED) != 0) {
+    ProcessorSpecDataHob->ProcessorSpecificData.PrivilegeModeSupported |=
+      SMBIOS_RISC_V_PSD_USER_MODE_SUPPORTED;
   }
-  ProcessorSpecDataHob->ProcessorSpecificData.MachineVendorId.Value64_L = FirmwareContextHartSpecific->MachineVendorId.Value64_L;
-  ProcessorSpecDataHob->ProcessorSpecificData.MachineVendorId.Value64_H = FirmwareContextHartSpecific->MachineVendorId.Value64_H;
-  ProcessorSpecDataHob->ProcessorSpecificData.MachineArchId.Value64_L = FirmwareContextHartSpecific->MachineArchId.Value64_L;
-  ProcessorSpecDataHob->ProcessorSpecificData.MachineArchId.Value64_H = FirmwareContextHartSpecific->MachineArchId.Value64_H;
-  ProcessorSpecDataHob->ProcessorSpecificData.MachineImplId.Value64_L = FirmwareContextHartSpecific->MachineImplId.Value64_L;
-  ProcessorSpecDataHob->ProcessorSpecificData.MachineImplId.Value64_H = FirmwareContextHartSpecific->MachineImplId.Value64_H;
+  ProcessorSpecDataHob->ProcessorSpecificData.MachineVendorId.Value64_L =
+    FirmwareContextHartSpecific->MachineVendorId.Value64_L;
+  ProcessorSpecDataHob->ProcessorSpecificData.MachineVendorId.Value64_H =
+    FirmwareContextHartSpecific->MachineVendorId.Value64_H;
+  ProcessorSpecDataHob->ProcessorSpecificData.MachineArchId.Value64_L =
+    FirmwareContextHartSpecific->MachineArchId.Value64_L;
+  ProcessorSpecDataHob->ProcessorSpecificData.MachineArchId.Value64_H =
+    FirmwareContextHartSpecific->MachineArchId.Value64_H;
+  ProcessorSpecDataHob->ProcessorSpecificData.MachineImplId.Value64_L =
+    FirmwareContextHartSpecific->MachineImplId.Value64_L;
+  ProcessorSpecDataHob->ProcessorSpecificData.MachineImplId.Value64_H =
+    FirmwareContextHartSpecific->MachineImplId.Value64_H;
   return EFI_SUCCESS;
 }
