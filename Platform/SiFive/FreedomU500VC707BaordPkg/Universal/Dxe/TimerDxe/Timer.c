@@ -28,7 +28,7 @@ static volatile void * const p_mtime = (void *)CLINT_REG_MTIME;
 //
 // The handle onto which the Timer Architectural Protocol will be installed
 //
-EFI_HANDLE                mTimerHandle = NULL;
+static EFI_HANDLE mTimerHandle = NULL;
 
 //
 // The Timer Architectural Protocol that this driver produces
@@ -49,12 +49,12 @@ EFI_CPU_ARCH_PROTOCOL     *mCpu;
 // The notification function to call on every timer interrupt.
 // A bug in the compiler prevents us from initializing this here.
 //
-EFI_TIMER_NOTIFY mTimerNotifyFunction;
+static EFI_TIMER_NOTIFY mTimerNotifyFunction;
 
 //
 // The current period of the timer interrupt
 //
-volatile UINT64 mTimerPeriod = 0;
+static UINT64 mTimerPeriod = 0;
 
 
 /**

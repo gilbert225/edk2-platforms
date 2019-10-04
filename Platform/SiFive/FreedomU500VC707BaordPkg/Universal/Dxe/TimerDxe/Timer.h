@@ -7,8 +7,8 @@
 
 **/
 
-#ifndef TIMER_H
-#define TIMER_H
+#ifndef U500_TIMER_H
+#define U500_TIMER_H
 
 #include <PiDxe.h>
 
