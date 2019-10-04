@@ -5,9 +5,6 @@
  *
  * Copyright (c) 2019 Western Digital Corporation or its affiliates.
  *
- * Authors:
- *   Anup Patel <anup.patel@wdc.com>
- *
  */
 
 #include <Base.h>
@@ -29,8 +26,8 @@ ASM_PFX(_ModuleEntryPoint):
    * Jump to warm-boot if this is not the selected core booting,
    */
   csrr a6, CSR_MHARTID
-  li a5, FixedPcdGet32 (PcdBootHartId)
-  bne a6, a5, _wait_for_boot_hart
+  li   a5, FixedPcdGet32 (PcdBootHartId)
+  bne  a6, a5, _wait_for_boot_hart
 
   // light LED on
   li a5, 0x54002000
@@ -46,8 +43,8 @@ ASM_PFX(_ModuleEntryPoint):
    * s7 -> HART Count
    * s8 -> HART Stack Size
    */
-  li s7, FixedPcdGet32 (PcdHartCount)
-  li s8, FixedPcdGet32 (PcdOpenSbiStackSize)
+  li  s7, FixedPcdGet32 (PcdHartCount)
+  li  s8, FixedPcdGet32 (PcdOpenSbiStackSize)
 
   /* Setup scratch space for all the HARTs*/
   li  tp, FixedPcdGet32 (PcdScratchRamBase)
@@ -56,53 +53,57 @@ ASM_PFX(_ModuleEntryPoint):
   /* Keep a copy of tp */
   add t3, tp, zero
   /* Counter */
-  li t2, 1
+  li  t2, 1
   /* hartid 0 is mandated by ISA */
-  li t1, 0
+  li  t1, 0
 _scratch_init:
   add tp, t3, zero
   mul a5, s8, t1
   sub tp, tp, a5
-  li a5, SBI_SCRATCH_SIZE
+  li  a5, SBI_SCRATCH_SIZE
   sub tp, tp, a5
 
   /* Initialize scratch space */
   li  a4, FixedPcdGet32 (PcdFwStartAddress)
   li  a5, FixedPcdGet32 (PcdFwEndAddress)
   sub a5, a5, a4
-  sd a4, SBI_SCRATCH_FW_START_OFFSET(tp)
-  sd a5, SBI_SCRATCH_FW_SIZE_OFFSET(tp)
+  sd  a4, SBI_SCRATCH_FW_START_OFFSET(tp)
+  sd  a5, SBI_SCRATCH_FW_SIZE_OFFSET(tp)
+
   /* Note: fw_next_arg1() uses a0, a1, and ra */
-  call fw_next_arg1
+  call   fw_next_arg1
   sd a0, SBI_SCRATCH_NEXT_ARG1_OFFSET(tp)
+
   /* Note: fw_next_addr() uses a0, a1, and ra */
-  call fw_next_addr
-  sd a0, SBI_SCRATCH_NEXT_ADDR_OFFSET(tp)
-  li a4, PRV_S
-  sd a4, SBI_SCRATCH_NEXT_MODE_OFFSET(tp)
-  la a4, _start_warm
-  sd a4, SBI_SCRATCH_WARMBOOT_ADDR_OFFSET(tp)
-  la a4, platform
-  sd a4, SBI_SCRATCH_PLATFORM_ADDR_OFFSET(tp)
-  la a4, _hartid_to_scratch
-  sd a4, SBI_SCRATCH_HARTID_TO_SCRATCH_OFFSET(tp)
+  call    fw_next_addr
+  sd a0,  SBI_SCRATCH_NEXT_ADDR_OFFSET(tp)
+  li a4,  PRV_S
+  sd a4,  SBI_SCRATCH_NEXT_MODE_OFFSET(tp)
+  la a4,  _start_warm
+  sd a4,  SBI_SCRATCH_WARMBOOT_ADDR_OFFSET(tp)
+  la a4,  platform
+  sd a4,  SBI_SCRATCH_PLATFORM_ADDR_OFFSET(tp)
+  la a4,  _hartid_to_scratch
+  sd a4,  SBI_SCRATCH_HARTID_TO_SCRATCH_OFFSET(tp)
   sd zero, SBI_SCRATCH_TMP0_OFFSET(tp)
+
 #ifdef FW_OPTIONS
   li a4, FW_OPTIONS
   sd a4, SBI_SCRATCH_OPTIONS_OFFSET(tp)
 #else
   sd zero, SBI_SCRATCH_OPTIONS_OFFSET(tp)
 #endif
+
   add t1, t1, t2
   blt t1, s7, _scratch_init
 
   /* Fill-out temporary memory with 55aa*/
-  li a4, FixedPcdGet32 (PcdTemporaryRamBase)
-  li a5, FixedPcdGet32 (PcdTemporaryRamSize)
+  li  a4, FixedPcdGet32 (PcdTemporaryRamBase)
+  li  a5, FixedPcdGet32 (PcdTemporaryRamSize)
   add a5, a4, a5
 1:
-  li a3, 0x5AA55AA55AA55AA5
-  sd a3, (a4)
+  li  a3, 0x5AA55AA55AA55AA5
+  sd  a3, (a4)
   add a4, a4, __SIZEOF_POINTER__
   blt a4, a5, 1b
 
@@ -137,19 +138,19 @@ _start_warm:
   bge s6, s7, _start_hang
 
   /* find the scratch space for this hart */
-  li tp, FixedPcdGet32 (PcdScratchRamBase)
+  li  tp, FixedPcdGet32 (PcdScratchRamBase)
   mul a5, s7, s8
   add tp, tp, a5
   mul a5, s8, s6
   sub tp, tp, a5
-  li a5, SBI_SCRATCH_SIZE
+  li  a5, SBI_SCRATCH_SIZE
   sub tp, tp, a5
 
   /* update the mscratch */
   csrw CSR_MSCRATCH, tp
 
   /*make room for Hart specific Firmware Context*/
-  li a5, FIRMWARE_CONTEXT_HART_SPECIFIC_SIZE
+  li  a5, FIRMWARE_CONTEXT_HART_SPECIFIC_SIZE
   sub tp, tp, a5
 
   /* Setup stack */
@@ -157,21 +158,22 @@ _start_warm:
 
   /* Setup stack for the Hart executing EFI to top of temporary ram*/
   csrr a6, CSR_MHARTID
-  li a5, FixedPcdGet32 (PcdBootHartId)
-  bne a6, a5, 1f
+  li   a5, FixedPcdGet32 (PcdBootHartId)
+  bne  a6, a5, 1f
 
-  li a4, FixedPcdGet32(PcdTemporaryRamBase)
-  li a5, FixedPcdGet32(PcdTemporaryRamSize)
+  li  a4, FixedPcdGet32(PcdTemporaryRamBase)
+  li  a5, FixedPcdGet32(PcdTemporaryRamSize)
   add sp, a4, a5
   1:
 
   /* Setup trap handler */
-  la a4, _trap_handler
+  la   a4, _trap_handler
   csrw CSR_MTVEC, a4
+
   /* Make sure that mtvec is updated */
   1:
   csrr a5, CSR_MTVEC
-  bne a4, a5, 1b
+  bne  a4, a5, 1b
 
   /* Call library constructors before jup to SEC core */
   call ProcessLibraryConstructorList
@@ -194,33 +196,34 @@ _boot_hart_done:
   .globl _hartid_to_scratch
 _hartid_to_scratch:
   add sp, sp, -(3 * __SIZEOF_POINTER__)
-  sd s0, (sp)
-  sd s1, (__SIZEOF_POINTER__)(sp)
-  sd s2, (__SIZEOF_POINTER__ * 2)(sp)
+  sd  s0, (sp)
+  sd  s1, (__SIZEOF_POINTER__)(sp)
+  sd  s2, (__SIZEOF_POINTER__ * 2)(sp)
+
   /*
    * a0 -> HART ID (passed by caller)
    * s0 -> HART Stack Size
    * s1 -> HART Stack End
    * s2 -> Temporary
    */
-  la s2, platform
+  la  s2, platform
 #if __riscv_xlen == 64
   lwu s0, SBI_PLATFORM_HART_STACK_SIZE_OFFSET(s2)
   lwu s2, SBI_PLATFORM_HART_COUNT_OFFSET(s2)
 #else
-  lw s0, SBI_PLATFORM_HART_STACK_SIZE_OFFSET(s2)
-  lw s2, SBI_PLATFORM_HART_COUNT_OFFSET(s2)
+  lw  s0, SBI_PLATFORM_HART_STACK_SIZE_OFFSET(s2)
+  lw  s2, SBI_PLATFORM_HART_COUNT_OFFSET(s2)
 #endif
   mul s2, s2, s0
-  li s1, FixedPcdGet32 (PcdScratchRamBase)
+  li  s1, FixedPcdGet32 (PcdScratchRamBase)
   add s1, s1, s2
   mul s2, s0, a0
   sub s1, s1, s2
-  li s2, SBI_SCRATCH_SIZE
+  li  s2, SBI_SCRATCH_SIZE
   sub a0, s1, s2
-  ld s0, (sp)
-  ld s1, (__SIZEOF_POINTER__)(sp)
-  ld s2, (__SIZEOF_POINTER__ * 2)(sp)
+  ld  s0, (sp)
+  ld  s1, (__SIZEOF_POINTER__)(sp)
+  ld  s2, (__SIZEOF_POINTER__ * 2)(sp)
   add sp, sp, (3 * __SIZEOF_POINTER__)
   ret
 
@@ -239,22 +242,22 @@ _trap_handler:
   csrrw tp, CSR_MSCRATCH, tp
 
   /* Save T0 in scratch space */
-  sd t0, SBI_SCRATCH_TMP0_OFFSET(tp)
+  sd   t0, SBI_SCRATCH_TMP0_OFFSET(tp)
 
   /* Check which mode we came from */
   csrr t0, CSR_MSTATUS
-  srl t0, t0, MSTATUS_MPP_SHIFT
-  and t0, t0, PRV_M
+  srl  t0, t0, MSTATUS_MPP_SHIFT
+  and  t0, t0, PRV_M
   xori t0, t0, PRV_M
-  beq t0, zero, _trap_handler_m_mode
+  beq  t0, zero, _trap_handler_m_mode
 
   /* We came from S-mode or U-mode */
 _trap_handler_s_mode:
   /* Set T0 to original SP */
-  add t0, sp, zero
+  add  t0, sp, zero
 
   /* Setup exception stack */
-  add sp, tp, -(SBI_TRAP_REGS_SIZE)
+  add  sp, tp, -(SBI_TRAP_REGS_SIZE)
 
   /* Jump to code common for all modes */
   j _trap_handler_all_mode
@@ -282,9 +285,9 @@ _trap_handler_all_mode:
 
   /* Save MEPC and MSTATUS CSRs */
   csrr t0, CSR_MEPC
-  sd t0, SBI_TRAP_REGS_OFFSET(mepc)(sp)
+  sd   t0, SBI_TRAP_REGS_OFFSET(mepc)(sp)
   csrr t0, CSR_MSTATUS
-  sd t0, SBI_TRAP_REGS_OFFSET(mstatus)(sp)
+  sd   t0, SBI_TRAP_REGS_OFFSET(mstatus)(sp)
 
   /* Save all general regisers except SP and T0 */
   sd zero, SBI_TRAP_REGS_OFFSET(zero)(sp)
@@ -319,7 +322,7 @@ _trap_handler_all_mode:
   sd t6, SBI_TRAP_REGS_OFFSET(t6)(sp)
 
   /* Call C routine */
-  add a0, sp, zero
+  add  a0, sp, zero
   csrr a1, CSR_MSCRATCH
   call sbi_trap_handler
 
@@ -355,9 +358,9 @@ _trap_handler_all_mode:
   ld t6, SBI_TRAP_REGS_OFFSET(t6)(sp)
 
   /* Restore MEPC and MSTATUS CSRs */
-  ld t0, SBI_TRAP_REGS_OFFSET(mepc)(sp)
+  ld   t0, SBI_TRAP_REGS_OFFSET(mepc)(sp)
   csrw CSR_MEPC, t0
-  ld t0, SBI_TRAP_REGS_OFFSET(mstatus)(sp)
+  ld   t0, SBI_TRAP_REGS_OFFSET(mstatus)(sp)
   csrw CSR_MSTATUS, t0
 
   /* Restore T0 */
