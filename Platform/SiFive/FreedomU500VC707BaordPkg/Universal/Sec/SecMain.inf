@@ -18,7 +18,7 @@
 #
 # The following information is for reference only and not required by the build tools.
 #
-#  VALID_ARCHITECTURES           = RISCV64 EBC
+#  VALID_ARCHITECTURES           = RISCV64
 #
 
 [Sources]
@@ -48,9 +48,7 @@
   PrintLib
   SerialPortLib
   RiscVOpensbiLib
-  OpenSbiPlatformLib # This is required library which
-                     # provides platform level opensbi
-                     # functions.
+  OpenSbiPlatformLib
 
 [Ppis]
   gEfiTemporaryRamSupportPpiGuid # PPI ALWAYS_PRODUCED
@@ -61,12 +59,14 @@
   gUefiRiscVPlatformPkgTokenSpaceGuid.PcdRiscVPeiFvSize
 
 [Pcd]
+  gUefiRiscVPlatformPkgTokenSpaceGuid.PcdBootHartId
   gUefiRiscVPlatformPkgTokenSpaceGuid.PcdFwStartAddress
   gUefiRiscVPlatformPkgTokenSpaceGuid.PcdFwEndAddress
   gUefiRiscVPlatformPkgTokenSpaceGuid.PcdHartCount
-  gUefiRiscVPlatformPkgTokenSpaceGuid.PcdBootHartId
+  gUefiRiscVPlatformPkgTokenSpaceGuid.PcdOpenSbiStackSize
   gUefiRiscVPlatformPkgTokenSpaceGuid.PcdScratchRamBase
   gUefiRiscVPlatformPkgTokenSpaceGuid.PcdScratchRamSize
-  gUefiRiscVPlatformPkgTokenSpaceGuid.PcdOpenSbiStackSize
   gUefiRiscVPlatformPkgTokenSpaceGuid.PcdTemporaryRamBase
   gUefiRiscVPlatformPkgTokenSpaceGuid.PcdTemporaryRamSize
+
+
