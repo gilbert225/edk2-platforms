@@ -1,13 +1,23 @@
 # Introduction
 
 ## EDK2 RISC-V Platform Package
-RISC-V platform package provides the generic and common modules for RISC-V platforms. RISC-V platform package could include RiscPlatformPkg.dec to use the common drivers, libraries, definitions, PCDs and etc. for the platform development.
+RISC-V platform package provides the generic and common modules for RISC-V
+platforms. RISC-V platform package could include RiscPlatformPkg.dec to use
+the common drivers, libraries, definitions, PCDs and etc. for the platform
+development.
 
 ## EDK2 RISC-V Platforms
-RISC-V platform is created and maintained by RISC-V platform vendors. The directory of RISC-V platform should be created under Platform/RiscV. Vendor should create the folder under Platform/RiscV and name it using vendor name, under the vendor folder is the platform folder named by platform model name, code name or etc. (e.g. Platform/RiscV/SiFive/U500Pkg)
+RISC-V platform is created and maintained by RISC-V platform vendors. The
+directory of RISC-V platform should be created under Platform/RiscV. Vendor
+should create the folder under Platform/RiscV and name it using vendor name,
+under the vendor folder is the platform folder named by platform model name,
+code name or etc. (e.g. Platform/RiscV/SiFive/U500Pkg)
 
 ## Build EDK2 RISC-V Platforms
-RISC-V platform package should provide EDK2 metafiles under RISC-V platform package folder (Platform/RiscV/{Vendor}/{Platform}). Build RISC-V platform package against edk2 and follow the build guidence mentioned in Readme.md under below link.<br>
+RISC-V platform package should provide EDK2 metafiles under RISC-V platform
+package folder (Platform/RiscV/{Vendor}/{Platform}). Build RISC-V platform
+package against edk2 and follow the build guidence mentioned in Readme.md under
+below link.<br>
 https://github.com/tianocore/edk2-platforms<br>
 
 ### Download the sources ###
@@ -20,11 +30,15 @@ git clone https://github.com/tianocore/edk2-non-osi.git
 ```
 
 ### Requirements
-Build EDK2 RISC-V platform requires GCC RISC-V toolchain. Refer to https://github.com/riscv/riscv-gnu-toolchain for the details.
-The commit ID 64879b24 is verified to build RISC-V EDK2 platform and boot to EFI SHELL successfully.
+Build EDK2 RISC-V platform requires GCC RISC-V toolchain. Refer to https://github.com/riscv/riscv-gnu-toolchain
+for the details. The commit ID 64879b24 is verified to build RISC-V EDK2
+platform and boot to EFI SHELL successfully.
 
 ### EDK2 project
-Currently, the EDK2 RISC-V platform can only build with edk2 project in **edk2-staging/RISC-V-V2** branch. The build architecture whcih is supported and verified so far is "RISCV64". The verified RISC-V toolchain is https://github.com/riscv/riscv-gnu-toolchain @64879b24, toolchain tag is "GCCRISCV" declared in tools_def.txt<br>
+Currently, the EDK2 RISC-V platform can only build with edk2 project in
+**edk2-staging/RISC-V-V2** branch. The build architecture whcih is supported
+and verified so far is "RISCV64". The verified RISC-V toolchain is https://github.com/riscv/riscv-gnu-toolchain @64879b24
+, toolchain tag is "GCC5" declared in tools_def.txt<br>
 
 ### Linux Build Instructions
 You can build the RISC-V platform using below script, <br>
@@ -40,10 +54,10 @@ EDK2 Firmware volume related PCDs which declared in platform FDF file.
 |----------------|----------|
 |PcdRiscVSecFvBase| The base address of SEC Firmware Volume|
 |PcdRiscVSecFvSize| The size of SEC Firmware Volume|
-|PcdRiscVPeiFvBase| The base address of SEC Firmware Volume|
-|PcdRiscVPeiFvSize| The size of SEC Firmware Volume|
-|PcdRiscVDxeFvBase| The base address of SEC Firmware Volume|
-|PcdRiscVDxeFvSize| The size of SEC Firmware Volume|
+|PcdRiscVPeiFvBase| The base address of PEI Firmware Volume|
+|PcdRiscVPeiFvSize| The size of PEI Firmware Volume|
+|PcdRiscVDxeFvBase| The base address of DXE Firmware Volume|
+|PcdRiscVDxeFvSize| The size of DXE Firmware Volume|
 
 ### EDK2 EFI Variable Region Settings
 The PCD settings regard to EFI Variable
