@@ -721,8 +721,7 @@ FvbProtocolWrite (
 
 --*/
 {
-  return RamFlashWrite ((EFI_LBA)Lba, (UINTN)Offset, NumBytes,
-           (UINT8 *)Buffer);
+  return RamFlashWrite (Lba, Offset, NumBytes, Buffer);
 }
 
 EFI_STATUS
@@ -766,8 +765,7 @@ FvbProtocolRead (
 
 --*/
 {
-  return RamFlashRead ((EFI_LBA)Lba, (UINTN)Offset, NumBytes,
-           (UINT8 *)Buffer);
+  return RamFlashRead (Lba, Offset, NumBytes, Buffer);
 }
 
 EFI_STATUS
