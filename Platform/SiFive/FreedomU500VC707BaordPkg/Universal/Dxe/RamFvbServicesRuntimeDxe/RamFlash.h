@@ -7,8 +7,8 @@
 
 **/
 
-#ifndef _RAM_FLASH_H_
-#define _RAM_FLASH_H_
+#ifndef RAM_FLASH_H
+#define RAM_FLASH_H
 
 #include <Protocol/FirmwareVolumeBlock.h>
 

@@ -8,8 +8,8 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 
 **/
 
-#ifndef _PLATFORM_BOOT_MANAGER_H_
-#define _PLATFORM_BOOT_MANAGER_H_
+#ifndef PLATFORM_BOOT_MANAGER_H
+#define PLATFORM_BOOT_MANAGER_H
 
 #include <PiDxe.h>
 #include <IndustryStandard/Bmp.h>

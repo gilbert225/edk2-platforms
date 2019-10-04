@@ -6,8 +6,8 @@
   SPDX-License-Identifier: BSD-2-Clause-Patent
 
 **/
-#ifndef _SIFIVE_U54_CORE_H_
-#define _SIFIVE_U54_CORE_H_
+#ifndef SIFIVE_U54_CORE_H
+#define SIFIVE_U54_CORE_H
 
 #include <PiPei.h>
 

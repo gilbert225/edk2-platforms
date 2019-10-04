@@ -8,8 +8,8 @@
 
 **/
 
-#ifndef _PLATFORM_PEI_H_INCLUDED_
-#define _PLATFORM_PEI_H_INCLUDED_
+#ifndef PLATFORM_PEI_H_INCLUDED
+#define PLATFORM_PEI_H_INCLUDED
 
 VOID
 AddIoMemoryBaseSizeHob (

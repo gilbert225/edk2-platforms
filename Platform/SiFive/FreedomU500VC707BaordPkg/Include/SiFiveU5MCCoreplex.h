@@ -6,8 +6,8 @@
   SPDX-License-Identifier: BSD-2-Clause-Patent
 
 **/
-#ifndef _SIFIVE_U5MC_COREPLEX_H_
-#define _SIFIVE_U5MC_COREPLEX_H_
+#ifndef SIFIVE_U5MC_COREPLEX_H
+#define SIFIVE_U5MC_COREPLEX_H
 
 #include <PiPei.h>
 

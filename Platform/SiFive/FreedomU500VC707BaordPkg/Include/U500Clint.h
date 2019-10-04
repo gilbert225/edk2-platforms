@@ -6,8 +6,8 @@
   SPDX-License-Identifier: BSD-2-Clause-Patent
 
 **/
-#ifndef _U500_H_
-#define _U500_H_
+#ifndef U500_H
+#define U500_H
 
 #define CLINT_REG_MTIME     0x0200BFF8
 #define CLINT_REG_MTIMECMP0 0x02004000

@@ -15,8 +15,8 @@
 
 **/
 
-#ifndef _FW_BLOCK_SERVICE_H_
-#define _FW_BLOCK_SERVICE_H_
+#ifndef FW_BLOCK_SERVICE_H
+#define FW_BLOCK_SERVICE_H
 
 typedef struct {
   UINTN                       FvBase;
