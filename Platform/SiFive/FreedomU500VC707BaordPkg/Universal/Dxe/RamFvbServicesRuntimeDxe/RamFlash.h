@@ -12,7 +12,7 @@
 
 #include <Protocol/FirmwareVolumeBlock.h>
 
-extern UINT8 *mFlashBase;
+extern VOID *mFlashBase;
 
 /**
   Read from Ram Flash

@@ -7,17 +7,18 @@
 
 #include <Library/BaseMemoryLib.h>
 #include <Library/DebugLib.h>
+#include <Library/IoLib.h>
 #include <Library/PcdLib.h>
 
 #include "RamFlash.h"
 
-UINT8 *mFlashBase;
+VOID *mFlashBase;
 
 STATIC UINTN       mFdBlockSize = 0;
 STATIC UINTN       mFdBlockCount = 0;
 
 STATIC
-volatile UINT8*
+UINT8*
 RamFlashPtr (
   IN        EFI_LBA                             Lba,
   IN        UINTN                               Offset
@@ -84,7 +85,7 @@ RamFlashWrite (
   )
 {
   volatile UINT8  *Ptr;
-  UINTN           Loop;
+  UINTN           i;
 
   //
   // Only write to the first 64k. We don't bother saving the FTW Spare
@@ -98,9 +99,8 @@ RamFlashWrite (
   // Program flash
   //
   Ptr = RamFlashPtr (Lba, Offset);
-  for (Loop = 0; Loop < *NumBytes; Loop++) {
-    *Ptr = Buffer[Loop];
-    Ptr++;
+  for (i = 0; i < *NumBytes; i++) {
+    MmioWrite8(ptr[i], Buffer[i]);
   }
 
   return EFI_SUCCESS;
