@@ -142,10 +142,9 @@ SerialPortPoll (
   VOID
   )
 {
-    static volatile UINT32 * const uart = (void *)(U500_UART_ADDR);
     UINT32 ip;
 
-    ip = REG32(uart, UART_REG_IP);
+    ip = MmioRead32(U500_UART_ADDR + UART_REG_IP);
     if(ip & UART_IP_RXWM) {
         return TRUE;
     }
