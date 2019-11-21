@@ -66,8 +66,7 @@ provide their own packaged cross-toolchains.
 ### GCC for RISC-V
 RISC-V open source community provides GCC toolchains for
 [riscv64-unknown-elf](https://github.com/riscv/riscv-gnu-toolchain)
-compiled to run on x86 Linux. The commit ID 64879b24 is verified to build RISC-V EDK2 platform and boot to EFI
-SHELL successfully.
+compiled to run on x86 Linux.
 
 ### clang
 Clang does not require separate cross compilers, but it does need a
