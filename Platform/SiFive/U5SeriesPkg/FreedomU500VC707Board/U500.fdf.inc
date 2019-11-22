@@ -46,10 +46,11 @@ SET gUefiRiscVPlatformPkgTokenSpaceGuid.PcdTemporaryRamBase = $(CODE_BASE_ADDRES
 SET gUefiRiscVPlatformPkgTokenSpaceGuid.PcdTemporaryRamSize = 0x10000
 
 
-SET gUefiRiscVPkgTokenSpaceGuid.PcdRiscVMachineTimerFrequencyInHerz = 1000000
-SET gUefiRiscVPlatformPkgTokenSpaceGuid.PcdHartCount             = 4     # Total cores on U500 platform
-SET gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid.PcdNumberofU5Cores = 4     # Total U5 cores enabled on U500 platform
-SET gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid.PcdE5MCSupported   = False # Enable optional E51 MC core?
-SET gUefiRiscVPlatformPkgTokenSpaceGuid.PcdBootHartId            = 0     # Boot hart ID
+SET gUefiRiscVPkgTokenSpaceGuid.PcdRiscVMachineTimerFrequencyInHerz    = 1000000
+SET gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid.PcdU5PlatformSystemClock = 100000000 # 100Mhz system clock
+SET gUefiRiscVPlatformPkgTokenSpaceGuid.PcdHartCount                   = 4         # Total cores on U500 platform
+SET gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid.PcdNumberofU5Cores       = 4         # Total U5 cores enabled on U500 platform
+SET gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid.PcdE5MCSupported         = False     # Enable optional E51 MC core?
+SET gUefiRiscVPlatformPkgTokenSpaceGuid.PcdBootHartId                  = 0         # Boot hart ID
 
 SET gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid.PcdU5UartBase = 0x54000000

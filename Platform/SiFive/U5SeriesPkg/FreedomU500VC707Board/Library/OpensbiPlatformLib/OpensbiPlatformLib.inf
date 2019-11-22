@@ -50,3 +50,4 @@
   gUefiRiscVPlatformPkgTokenSpaceGuid.PcdOpenSbiStackSize
 
   gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid.PcdU5UartBase
+  gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid.PcdU5PlatformSystemClock

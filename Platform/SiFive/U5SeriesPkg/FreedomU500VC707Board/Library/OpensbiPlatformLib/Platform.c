@@ -27,7 +27,7 @@
 #define U500_HART_STACK_SIZE    FixedPcdGet32(PcdOpenSbiStackSize)
 #define U500_BOOT_HART_ID       FixedPcdGet32(PcdBootHartId)
 
-#define U500_SYS_CLK            100000000
+#define U500_SYS_CLK            FixedPcdGet32(PcdU5PlatformSystemClock)
 
 #define U500_PLIC_ADDR              0xc000000
 #define U500_PLIC_NUM_SOURCES       0x35

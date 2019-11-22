@@ -23,9 +23,10 @@
   gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid  = {0x725B804B, 0x10B5, 0x4326, { 0xAD, 0xFF, 0x59, 0xCE, 0x6E, 0xFD, 0x5B, 0x36 }}
 
 [PcdsFixedAtBuild]
-  gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid.PcdNumberofU5Cores|0x8|UINT32|0x00001000
-  gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid.PcdE5MCSupported|TRUE|BOOLEAN|0x00001001
-  gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid.PcdU5UartBase|0x0|UINT32|0x00001002
+  gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid.PcdU5PlatformSystemClock|0x0|UINT32|0x00001000
+  gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid.PcdNumberofU5Cores|0x8|UINT32|0x00001001
+  gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid.PcdE5MCSupported|TRUE|BOOLEAN|0x00001002
+  gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid.PcdU5UartBase|0x0|UINT32|0x00001003
 
 [PcdsPatchableInModule]
 

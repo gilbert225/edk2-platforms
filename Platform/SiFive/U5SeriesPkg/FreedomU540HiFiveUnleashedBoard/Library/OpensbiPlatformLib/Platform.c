@@ -27,7 +27,7 @@
 #define U540_HART_STACK_SIZE    FixedPcdGet32(PcdOpenSbiStackSize)
 #define U540_BOOT_HART_ID       FixedPcdGet32(PcdBootHartId)
 
-#define U540_SYS_CLK              100000000
+#define U540_SYS_CLK              FixedPcdGet32(PcdU5PlatformSystemClock)
 
 #define U540_PLIC_ADDR            0xc000000
 #define U540_PLIC_NUM_SOURCES     0x35

@@ -33,6 +33,7 @@
 
 [FixedPcd]
   gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid.PcdU5UartBase
+  gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid.PcdU5PlatformSystemClock
 
 [Sources]
   SerialPortLib.c

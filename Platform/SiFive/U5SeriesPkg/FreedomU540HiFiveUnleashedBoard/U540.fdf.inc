@@ -46,9 +46,10 @@ SET gUefiRiscVPlatformPkgTokenSpaceGuid.PcdTemporaryRamBase = $(CODE_BASE_ADDRES
 SET gUefiRiscVPlatformPkgTokenSpaceGuid.PcdTemporaryRamSize = 0x10000
 
 
-SET gUefiRiscVPkgTokenSpaceGuid.PcdRiscVMachineTimerFrequencyInHerz = 1000000
-SET gUefiRiscVPlatformPkgTokenSpaceGuid.PcdHartCount             = 5          # Total cores on U540 platform
-SET gUefiRiscVPlatformPkgTokenSpaceGuid.PcdBootHartId            = 1          # Boot hart ID
-SET gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid.PcdNumberofU5Cores = 4          # Total U5 cores enabled on U540 platform
-SET gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid.PcdE5MCSupported   = True       # E51 MC exists.
-SET gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid.PcdU5UartBase      = 0x10010000 # Serial port base address
+SET gUefiRiscVPkgTokenSpaceGuid.PcdRiscVMachineTimerFrequencyInHerz    = 1000000
+SET gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid.PcdU5PlatformSystemClock = 1000000000 # 1GHz system clock
+SET gUefiRiscVPlatformPkgTokenSpaceGuid.PcdHartCount                   = 5          # Total cores on U540 platform
+SET gUefiRiscVPlatformPkgTokenSpaceGuid.PcdBootHartId                  = 1          # Boot hart ID
+SET gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid.PcdNumberofU5Cores       = 4          # Total U5 cores enabled on U540 platform
+SET gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid.PcdE5MCSupported         = True       # E51 MC exists.
+SET gSiFiveU5SeriesPlatformsPkgTokenSpaceGuid.PcdU5UartBase            = 0x10010000 # Serial port base address
