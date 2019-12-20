@@ -8,9 +8,9 @@
 **/
 
 #include "Timer.h"
+#include <IndustryStandard/RiscVOpensbi.h>
 #include <sbi/riscv_asm.h>
 #include <sbi/riscv_encoding.h>
-#include <sbi/sbi.h>
 #include <sbi/riscv_io.h>
 #include <sbi/riscv_atomic.h>
 #include <U5Clint.h>
