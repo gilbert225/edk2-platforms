@@ -7,6 +7,8 @@
 
 **/
 
+#include <IndustryStandard/RiscVOpensbi.h>
+
 //
 // The package level header files this module uses
 //
@@ -19,7 +21,6 @@
 #include <Library/DebugLib.h>
 #include <Library/FirmwareContextProcessorSpecificLib.h>
 #include <Library/HobLib.h>
-#include <sbi/sbi.h>
 #include <sbi/sbi_hart.h>
 #include <sbi/sbi_platform.h>
 #include <sbi/sbi_scratch.h>
