@@ -12,25 +12,24 @@
 //
 #include <PiPei.h>
 
+#include <IndustryStandard/RiscVOpensbi.h>
+
 //
 // The Library classes this module consumes
 //
+#include <Library/BaseMemoryLib.h>
 #include <Library/DebugLib.h>
+#include <Library/FirmwareContextProcessorSpecificLib.h>
 #include <Library/HobLib.h>
 #include <Library/PcdLib.h>
-#include <Library/BaseMemoryLib.h>
 #include <Library/ResourcePublicationLib.h>
 
-#include <SmbiosProcessorSpecificData.h>
-
-#include <RiscVImpl.h>
 #include <ProcessorSpecificHobData.h>
+#include <RiscVImpl.h>
 #include <sbi/sbi_hart.h>
 #include <sbi/sbi_scratch.h>
 #include <sbi/sbi_platform.h>
-#include <sbi/sbi.h>
-#include <sbi/SbiFirmwareContext.h>
-#include <Library/FirmwareContextProcessorSpecificLib.h>
+#include <SmbiosProcessorSpecificData.h>
 
 /**
   Function to build core specific information HOB. RISC-V SMBIOS DXE driver collect
