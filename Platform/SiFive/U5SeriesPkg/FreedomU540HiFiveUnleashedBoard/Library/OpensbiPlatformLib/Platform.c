@@ -53,6 +53,8 @@
 #define U540_PRCI_CLKMUXSTATUSREG           0x002C
 #define U540_PRCI_CLKMUX_STATUS_TLCLKSEL    (0x1 << 1)
 
+unsigned long log2roundup(unsigned long x);
+
 static void U540_modify_dt(void *fdt)
 {
     u32 i, size;
@@ -87,13 +89,19 @@ static void U540_modify_dt(void *fdt)
 static int U540_final_init(bool cold_boot)
 {
     void *fdt;
+    struct sbi_scratch *ThisScratch;
 
     if (!cold_boot)
         return 0;
 
     fdt = sbi_scratch_thishart_arg1_ptr();
     U540_modify_dt(fdt);
-
+    //
+    // Set PMP of firmware regions to R and X. We will lock this in the end of PEI.
+    // This region only protects SEC, PEI and Scratch buffer.
+    //
+    ThisScratch = sbi_scratch_thishart_ptr ();
+    pmp_set(0, PMP_R | PMP_X, ThisScratch->fw_start, log2roundup (ThisScratch->fw_size));
     return 0;
 }
 
