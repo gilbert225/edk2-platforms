@@ -61,7 +61,7 @@ READ_LOCK_STATUS   = TRUE
 # The code in this FV handles the initial firmware startup, and
 # decompresses the PEI and DXE FVs which handles the rest of the boot sequence.
 #
-INF RiscVPlatformPkg/Universal/Sec/SecMain.inf
+INF Platform/RISC-V/PlatformPkg/Universal/Sec/SecMain.inf
 
 ################################################################################
 [FV.PEIFV]
@@ -149,8 +149,8 @@ INF  Platform/SiFive/U5SeriesPkg/Universal/Dxe/RamFvbServicesRuntimeDxe/FvbServi
 
 # RISC-V Core Drivers
 INF  Platform/SiFive/U5SeriesPkg/Universal/Dxe/TimerDxe/TimerDxe.inf
-INF  RiscVPkg/Universal/CpuDxe/CpuDxe.inf
-INF  RiscVPkg/Universal/SmbiosDxe/RiscVSmbiosDxe.inf
+INF  Silicon/RISC-V/ProcessorPkg/Universal/CpuDxe/CpuDxe.inf
+INF  Silicon/RISC-V/ProcessorPkg/Universal/SmbiosDxe/RiscVSmbiosDxe.inf
 
 INF  MdeModulePkg/Universal/FaultTolerantWriteDxe/FaultTolerantWriteDxe.inf
 
