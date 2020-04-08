@@ -29,8 +29,8 @@
   MdeModulePkg/MdeModulePkg.dec
   Platform/SiFive/U5SeriesPkg/U5SeriesPkg.dec
   Silicon/SiFive/SiFive.dec
-  RiscVPlatformPkg/RiscVPlatformPkg.dec
-  RiscVPkg/RiscVPkg.dec
+  Platform/RISC-V/PlatformPkg/RiscVPlatformPkg.dec
+  Silicon/RISC-V/ProcessorPkg/RiscVProcessorPkg.dec
 
 [LibraryClasses]
   BaseLib
