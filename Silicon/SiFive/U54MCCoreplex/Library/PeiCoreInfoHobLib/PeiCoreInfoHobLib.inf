@@ -27,7 +27,7 @@
 [Packages]
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
-  RiscVPkg/RiscVPkg.dec
+  Silicon/RISC-V/ProcessorPkg/RiscVPkg.dec
   Silicon/SiFive/SiFive.dec
 
 [LibraryClasses]
